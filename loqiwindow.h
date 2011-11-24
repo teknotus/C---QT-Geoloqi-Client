@@ -12,6 +12,7 @@
 #include "authdialog.h"
 #include "qgeoloqi.h"
 #include "apitestbuttons.h"
+#include "locationhistoryrequest.h"
 
 class LoqiWindow : public QMainWindow
 {
@@ -30,6 +31,7 @@ public:
     QTextEdit *outPut;
     ApiTestButtons *testButtons;
     QDockWidget *testButtonDock;
+    LocationHistoryRequest *lhr;
 
 public slots:
     void authSave();
@@ -39,6 +41,7 @@ public slots:
     void onGetProfile();
     void onGetLastLocation();
     void onGetHistory();
+    void onGetHistoriest();
     void onGetPlaces();
 
 private:

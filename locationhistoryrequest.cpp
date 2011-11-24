@@ -3,6 +3,7 @@
 LocationHistoryRequest::LocationHistoryRequest(QObject *parent) :
     QObject(parent)
 {
+
 }
 
 bool LocationHistoryRequest::isValid()

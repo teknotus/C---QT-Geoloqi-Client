@@ -23,10 +23,13 @@ LoqiWindow::LoqiWindow(QWidget *parent)
                                     | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea,testButtonDock);
 
+    lhr = new LocationHistoryRequest();
+    lhr->setCount(100);
     connect(testButtons->getUsernameButton, SIGNAL(clicked()), this, SLOT(onGetUsername()));
     connect(testButtons->getProfileButton, SIGNAL(clicked()), this, SLOT(onGetProfile()));
     connect(testButtons->getLastLocationButton, SIGNAL(clicked()), this, SLOT(onGetLastLocation()));
-    connect(testButtons->getHistoryButton, SIGNAL(clicked()), this, SLOT(onGetHistory()));
+//    connect(testButtons->getHistoryButton, SIGNAL(clicked()), this, SLOT(onGetHistory()));
+    connect(testButtons->getHistoryButton, SIGNAL(clicked()), this, SLOT(onGetHistoriest()));
     connect(testButtons->getPlacesButton, SIGNAL(clicked()), this, SLOT(onGetPlaces()));
 }
 
@@ -81,6 +84,10 @@ void LoqiWindow::onGetLastLocation() {
 
 void LoqiWindow::onGetHistory() {
     QGeoloqiReply* reply = loqi->getHistory();
+    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+}
+void LoqiWindow::onGetHistoriest() {
+    QGeoloqiReply* reply = lhr->get(loqi);
     connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
 }
 
