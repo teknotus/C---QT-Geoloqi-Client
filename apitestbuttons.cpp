@@ -16,5 +16,6 @@ ApiTestButtons::ApiTestButtons(QWidget *parent) :
     buttonLayout->addWidget(getLastLocationButton);
     buttonLayout->addWidget(getHistoryButton);
     buttonLayout->addWidget(getPlacesButton);
+    buttonLayout->addStretch();
     setLayout(buttonLayout);
 }
