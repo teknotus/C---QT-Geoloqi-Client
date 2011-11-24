@@ -9,10 +9,14 @@ SOURCES += main.cpp \
    qgeoloqi.cpp \
    qgeoloqireply.cpp \
     authdialog.cpp \
-    apitestbuttons.cpp
+    apitestbuttons.cpp \
+    locationhistoryrequest.cpp \
+    coordinates.cpp
 HEADERS += loqiwindow.h \
    qgeoloqi.h \
    qgeoloqireply.h \
     authdialog.h \
-    apitestbuttons.h
+    apitestbuttons.h \
+    locationhistoryrequest.h \
+    coordinates.h
 LIBS += -lqjson

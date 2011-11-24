@@ -28,6 +28,10 @@ public:
     QVariant decodeJson(QByteArray);
     QByteArray encodeUrlEncoded(QVector<QPair<QString,QString> >&);
     QVector<QPair<QString,QString> > decodeUrlEncoded(QByteArray);
+    QString api_url;
+    QString token;
+    QGeoloqiReply* get(QUrl);
+
 public slots:
     void sslErrors(QNetworkReply*, QList<QSslError>);
 /*signals:
@@ -38,12 +42,9 @@ public slots:
     void onHistory(QVariantMap);*/
 private:
     QNetworkAccessManager* manager;
-    QString api_url;
-    QString token;
     QString client_id;
     QString client_secret;
     void QGeoloqiCommon();
-    QGeoloqiReply* get(QUrl);
     QGeoloqiReply* post(QUrl, QByteArray);
 };
 
