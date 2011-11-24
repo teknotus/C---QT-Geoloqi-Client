@@ -22,7 +22,6 @@ public:
     ~LoqiWindow();
     void readSettings();
     void writeSettings();
-    void doStuff();
     AuthDialog *authdialog;
     QSettings *settings;
     QMenu *editMenu;

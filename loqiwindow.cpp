@@ -56,20 +56,12 @@ void LoqiWindow::authSave()
 {
     permanent_token = authdialog->authEdit->text();
     settings->setValue("authkey",permanent_token);
+    loqi->setToken(permanent_token);
     authdialog->hide();
-    doStuff();
 }
 void LoqiWindow::showAuthDialog()
 {
     authdialog->show();
-}
-
-void LoqiWindow::doStuff()
-{
-    loqi->setToken(QString(permanent_token));
-/*
-    loqi->getAuthToken(QString("jburrows"),QString("hehe"));
-*/
 }
 
 void LoqiWindow::onGetUsername() {
