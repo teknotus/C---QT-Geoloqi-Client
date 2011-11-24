@@ -14,7 +14,7 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     loqi = new QGeoloqi();
     loqi->setToken(permanent_token);
     outPut = new QTextEdit();
-    //outPut->
+    outPut->setReadOnly(true);
     setCentralWidget(outPut);
     testButtons = new ApiTestButtons();
     testButtonDock = new QDockWidget(tr("test buttons"));
