@@ -47,7 +47,8 @@ void QGeoloqiReply::processReply() {
     if (contentType.isValid()) {
         QString cType = contentType.toString();
         if (cType == QString("application/json")) {
-            content = decodeJson(response);
+            //content = decodeJson(response);
+            content = response;
         } else {
             content = QVariant();
             out << QString("Got invalid Content-Type: %1\n").arg(QString(response));

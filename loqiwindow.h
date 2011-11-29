@@ -13,6 +13,8 @@
 #include "qgeoloqi.h"
 #include "apitestbuttons.h"
 #include "locationhistoryrequest.h"
+#include "netmanager.h"
+#include "nettracker.h"
 
 class LoqiWindow : public QMainWindow
 {
@@ -32,6 +34,8 @@ public:
     ApiTestButtons *testButtons;
     QDockWidget *testButtonDock;
     LocationHistoryRequest *lhr;
+    NetManager *manager;
+    NetTracker *tracker;
 
 public slots:
     void authSave();

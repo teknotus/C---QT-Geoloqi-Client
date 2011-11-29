@@ -11,12 +11,16 @@ SOURCES += main.cpp \
     authdialog.cpp \
     apitestbuttons.cpp \
     locationhistoryrequest.cpp \
-    coordinates.cpp
+    coordinates.cpp \
+    netmanager.cpp \
+    nettracker.cpp
 HEADERS += loqiwindow.h \
    qgeoloqi.h \
    qgeoloqireply.h \
     authdialog.h \
     apitestbuttons.h \
     locationhistoryrequest.h \
-    coordinates.h
+    coordinates.h \
+    netmanager.h \
+    nettracker.h
 LIBS += -lqjson

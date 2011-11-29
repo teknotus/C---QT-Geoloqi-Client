@@ -15,6 +15,7 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     loqi->setToken(permanent_token);
     outPut = new QTextEdit();
     outPut->setReadOnly(true);
+    //outPut->setWordWrapMode(QTextOption::NoWrap);
     setCentralWidget(outPut);
     testButtons = new ApiTestButtons();
     testButtonDock = new QDockWidget(tr("test buttons"));
@@ -22,7 +23,10 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     testButtonDock->setAllowedAreas(Qt::LeftDockWidgetArea
                                     | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea,testButtonDock);
-
+    manager = new NetManager();
+    tracker = new NetTracker(manager);
+    tracker->setToken(permanent_token);
+    connect(tracker,SIGNAL(stringRecieved(QString)),outPut,SLOT(append(QString)));
     lhr = new LocationHistoryRequest();
     lhr->setCount(100);
     connect(testButtons->getUsernameButton, SIGNAL(clicked()), this, SLOT(onGetUsername()));
@@ -87,8 +91,9 @@ void LoqiWindow::onGetHistory() {
     connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
 }
 void LoqiWindow::onGetHistoriest() {
-    QGeoloqiReply* reply = lhr->get(loqi);
-    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+//    QGeoloqiReply* reply = lhr->get(loqi);
+//    connect(reply, SIGNAL(dataReady(QVariant, QGeoloqiReply*)), this, SLOT(appendText(QVariant,QGeoloqiReply*)));
+tracker->getUrl(lhr->url());
 }
 
 
@@ -98,6 +103,7 @@ void LoqiWindow::onGetPlaces() {
 }
 
 void LoqiWindow::appendText(QVariant text, QGeoloqiReply* reply) {
-    outPut->append(QString(loqi->encodeJson(text)));
+//    outPut->append(QString(loqi->encodeJson(text)));
+    outPut->append(text.toString());
     reply->deleteLater();
 }

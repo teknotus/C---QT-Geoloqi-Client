@@ -3,7 +3,7 @@
 LocationHistoryRequest::LocationHistoryRequest(QObject *parent) :
     QObject(parent)
 {
-
+    _base_url = QString("https://api.geoloqi.com/1/location/history");
 }
 
 bool LocationHistoryRequest::isValid()
@@ -11,10 +11,10 @@ bool LocationHistoryRequest::isValid()
     return true;
 }
 
-QGeoloqiReply * LocationHistoryRequest::get(QGeoloqi *loki)
+QUrl LocationHistoryRequest::url()
 {
-    QUrl url = QUrl(loki->api_url % QString("location/history"));
-    url.addQueryItem(QString("oauth_token"), loki->token);
+    QUrl url(_base_url);
+//    url.addQueryItem(QString("oauth_token"), loki->token);
     if(_count)
     {
         QString count;
@@ -74,10 +74,11 @@ QGeoloqiReply * LocationHistoryRequest::get(QGeoloqi *loki)
         url.addQueryItem(QString("sw"),_sw->toString());
         url.addQueryItem(QString("ne"),_ne->toString());
     }
-    return loki->get(url);
+    return url;
 }
 
 /* Setters */
+
 LocationHistoryRequest * LocationHistoryRequest::setCount(long count)
 {
     _count = count;
