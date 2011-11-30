@@ -26,17 +26,6 @@ public:
     };
 
     /* Setters */
-    LocationHistoryRequest * setCount(long);
-    LocationHistoryRequest * setAfter(QDateTime);
-    LocationHistoryRequest * setBefore(QDateTime);
-    LocationHistoryRequest * setSort(enum sort_direction);
-    LocationHistoryRequest * setAccuracy(long);
-    LocationHistoryRequest * setThinning(long);
-    LocationHistoryRequest * setGeometry(enum geometry_type);
-    LocationHistoryRequest * setCenter(Coordinates*);
-    LocationHistoryRequest * setRadius(long);
-    LocationHistoryRequest * setSW(Coordinates*);
-    LocationHistoryRequest * setNE(Coordinates*);
 
     QUrl url();
     bool isValid(); // checks if object has required request values
@@ -60,6 +49,17 @@ public:
 signals:
 
 public slots:
+    LocationHistoryRequest * setCount(long);
+    LocationHistoryRequest * setAfter(QDateTime);
+    LocationHistoryRequest * setBefore(QDateTime);
+    LocationHistoryRequest * setSort(enum sort_direction);
+    LocationHistoryRequest * setAccuracy(long);
+    LocationHistoryRequest * setThinning(long);
+    LocationHistoryRequest * setGeometry(enum geometry_type);
+    LocationHistoryRequest * setCenter(Coordinates*);
+    LocationHistoryRequest * setRadius(long);
+    LocationHistoryRequest * setSW(Coordinates*);
+    LocationHistoryRequest * setNE(Coordinates*);
 
 };
 

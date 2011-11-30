@@ -13,7 +13,11 @@ SOURCES += main.cpp \
     locationhistoryrequest.cpp \
     coordinates.cpp \
     netmanager.cpp \
-    nettracker.cpp
+    nettracker.cpp \
+    mainwindow.cpp \
+    locationhistorysearchwidget.cpp \
+    lochissearchresultswidget.cpp \
+    lochiswidget.cpp
 HEADERS += loqiwindow.h \
    qgeoloqi.h \
    qgeoloqireply.h \
@@ -22,5 +26,9 @@ HEADERS += loqiwindow.h \
     locationhistoryrequest.h \
     coordinates.h \
     netmanager.h \
-    nettracker.h
+    nettracker.h \
+    mainwindow.h \
+    locationhistorysearchwidget.h \
+    lochissearchresultswidget.h \
+    lochiswidget.h
 LIBS += -lqjson

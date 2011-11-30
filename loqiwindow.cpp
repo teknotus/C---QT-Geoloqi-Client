@@ -28,7 +28,7 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     tracker->setToken(permanent_token);
     connect(tracker,SIGNAL(stringRecieved(QString)),outPut,SLOT(append(QString)));
     lhr = new LocationHistoryRequest();
-    lhr->setCount(100);
+    lhr->setCount(10);
     connect(testButtons->getUsernameButton, SIGNAL(clicked()), this, SLOT(onGetUsername()));
     connect(testButtons->getProfileButton, SIGNAL(clicked()), this, SLOT(onGetProfile()));
     connect(testButtons->getLastLocationButton, SIGNAL(clicked()), this, SLOT(onGetLastLocation()));

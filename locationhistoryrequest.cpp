@@ -14,7 +14,6 @@ bool LocationHistoryRequest::isValid()
 QUrl LocationHistoryRequest::url()
 {
     QUrl url(_base_url);
-//    url.addQueryItem(QString("oauth_token"), loki->token);
     if(_count)
     {
         QString count;
