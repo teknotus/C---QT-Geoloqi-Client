@@ -8,6 +8,7 @@
 #include <QAction>
 #include "authdialog.h"
 #include "lochiswidget.h"
+#include "netmanager.h"
 
 class MainWindow : public QMainWindow
 {
@@ -22,6 +23,7 @@ public:
     QAction *editAuthKey;
     QString permanent_token;
     LocHisWidget *loc_his;
+    NetManager *manager;
 signals:
 
 public slots:

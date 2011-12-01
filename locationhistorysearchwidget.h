@@ -9,6 +9,8 @@
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QUrl>
+#include <QIntValidator>
 #include "locationhistoryrequest.h"
 
 class LocationHistorySearchWidget : public QWidget
@@ -27,9 +29,10 @@ public:
     QPushButton *searchButton;
     QVBoxLayout *searchLayout;
     LocationHistoryRequest *locHisRequest;
+    QIntValidator *intValidator;
 
 signals:
-    void request(LocationHistoryRequest*);
+    void request(QUrl);
 public slots:
     void sendReqest();
 

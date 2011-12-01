@@ -16,6 +16,8 @@ LocationHistorySearchWidget::LocationHistorySearchWidget(QWidget *parent) :
     afterLabel->setBuddy(after);
     countLabel = new QLabel(tr("Count"));
     count = new QLineEdit();
+    intValidator = new QIntValidator();
+    count->setValidator(intValidator);
     //count->setMask("9");
     countLabel->setBuddy(count);
     timeRangeEdit = new QHBoxLayout();
@@ -39,12 +41,12 @@ LocationHistorySearchWidget::LocationHistorySearchWidget(QWidget *parent) :
             locHisRequest,SLOT(setAfter(QDateTime)));
     connect(before,SIGNAL(dateTimeChanged(QDateTime)),
             locHisRequest,SLOT(setBefore(QDateTime)));
-    //connect(count,SIGNAL(textChanged(QString.toLong())),
-    //        locHisRequest,SLOT(setCount(long)));
+    connect(count,SIGNAL(textChanged(QString)),
+            locHisRequest,SLOT(setCount(QString)));
     connect(searchButton,SIGNAL(clicked()),this,SLOT(sendReqest()));
 }
 
 void LocationHistorySearchWidget::sendReqest()
 {
-    emit request(locHisRequest);
+    emit request(locHisRequest->url());
 }

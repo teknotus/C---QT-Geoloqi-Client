@@ -25,6 +25,10 @@ void NetTracker::setToken(QString token)
 void NetTracker::getUrl(QUrl url)
 {
     url.addQueryItem(QString("oauth_token"), _token);
+
+    QTextStream out(stdout);
+    out << url.toString();
+
     QNetworkRequest request = QNetworkRequest(url);
     request.setOriginatingObject(this);
     netManager->manager->get(request);

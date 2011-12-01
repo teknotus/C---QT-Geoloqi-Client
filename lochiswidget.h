@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include "locationhistorysearchwidget.h"
 #include "lochissearchresultswidget.h"
+#include "nettracker.h"
 
 class LocHisWidget : public QWidget
 {
@@ -14,6 +15,7 @@ public:
     LocationHistorySearchWidget *search;
     LocHisSearchResultsWidget *results;
     QVBoxLayout *layout;
+    NetTracker *tracker;
 signals:
 
 public slots:

@@ -7,11 +7,15 @@ MainWindow::MainWindow(QWidget *parent) :
     authdialog = new AuthDialog();
     connect(authdialog->saveSettingsButton,SIGNAL(clicked()),this,SLOT(authSave()));
     readSettings();
+    manager = new NetManager();
     editMenu = menuBar()->addMenu("Edit");
     editAuthKey = new QAction(tr("Edit Auth Key"),this);
     connect(editAuthKey,SIGNAL(triggered()),this,SLOT(showAuthDialog()));
     editMenu->addAction(editAuthKey);
     loc_his = new LocHisWidget();
+    NetTracker *loc_his_tracker = loc_his->tracker;
+    loc_his_tracker->setManager(manager);
+    loc_his_tracker->setToken(permanent_token);
     setCentralWidget(loc_his);
 }
 

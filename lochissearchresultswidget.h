@@ -15,7 +15,7 @@ public:
 signals:
 
 public slots:
-
+    void stringReply(QString);
 };
 
 #endif // LOCHISSEARCHRESULTSWIDGET_H

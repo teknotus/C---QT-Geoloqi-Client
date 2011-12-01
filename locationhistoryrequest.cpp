@@ -21,10 +21,17 @@ QUrl LocationHistoryRequest::url()
         url.addQueryItem(QString("count"),count);
     }
     if(_after.isValid())
-        url.addQueryItem(QString("after"),_after.toString(Qt::ISODate));
+    {
+        QString afterString;
+        afterString.setNum(_after.toTime_t());
+        url.addQueryItem(QString("after"),afterString);
+    }
     if(_before.isValid())
-        url.addQueryItem(QString("before"),_before.toString(Qt::ISODate));
-
+    {
+        QString beforeString;
+        beforeString.setNum(_before.toTime_t());
+        url.addQueryItem(QString("before"),beforeString);
+    }
     switch(_sort)
     {
     case no_sort:
@@ -81,6 +88,12 @@ QUrl LocationHistoryRequest::url()
 LocationHistoryRequest * LocationHistoryRequest::setCount(long count)
 {
     _count = count;
+    return this;
+}
+
+LocationHistoryRequest * LocationHistoryRequest::setCount(QString countString)
+{
+    _count = countString.toLong();
     return this;
 }
 

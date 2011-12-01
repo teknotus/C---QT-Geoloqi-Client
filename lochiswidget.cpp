@@ -9,4 +9,10 @@ LocHisWidget::LocHisWidget(QWidget *parent) :
     layout->addWidget(search);
     layout->addWidget(results);
     setLayout(layout);
+
+    tracker = new NetTracker();
+    connect(search,SIGNAL(request(QUrl)),
+            tracker,SLOT(getUrl(QUrl)));
+    connect(tracker,SIGNAL(stringRecieved(QString)),
+            results,SLOT(stringReply(QString)));
 }

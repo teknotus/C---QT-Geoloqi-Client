@@ -50,6 +50,7 @@ signals:
 
 public slots:
     LocationHistoryRequest * setCount(long);
+    LocationHistoryRequest * setCount(QString);
     LocationHistoryRequest * setAfter(QDateTime);
     LocationHistoryRequest * setBefore(QDateTime);
     LocationHistoryRequest * setSort(enum sort_direction);

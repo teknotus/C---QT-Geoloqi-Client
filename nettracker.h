@@ -9,6 +9,11 @@
 #include <QUrl>
 #include "netmanager.h"
 
+// debugging stuff remove later
+#include <iostream>
+#include <QTextStream>
+// end debugging stuff
+
 class NetManager; //Forward declaration
 class NetTracker : public QObject
 {
@@ -21,12 +26,12 @@ public:
     bool emitString;
     bool emitJson;
     void setManager(NetManager*);
-    void getUrl(QUrl);
     void setToken(QString);
 signals:
     void stringRecieved(QString);
     void jsonRecieved(QVariant*);
 public slots:
+    void getUrl(QUrl);
     void replyFinished(QNetworkReply*);
     void sslErrors(QNetworkReply*, QList<QSslError>);
 };
