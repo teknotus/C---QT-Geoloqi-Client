@@ -15,4 +15,6 @@ LocHisWidget::LocHisWidget(QWidget *parent) :
             tracker,SLOT(getUrl(QUrl)));
     connect(tracker,SIGNAL(stringRecieved(QString)),
             results,SLOT(stringReply(QString)));
+    connect(tracker,SIGNAL(jsonRecieved(QVariant)),
+            results,SLOT(jsonReply(QVariant)));
 }

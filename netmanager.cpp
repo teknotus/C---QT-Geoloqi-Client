@@ -20,6 +20,8 @@ void NetManager::replyFinished(QNetworkReply* netReply)
     connect(this,SIGNAL(replyRecieved(QNetworkReply*)),
             tracker,SLOT(replyFinished(QNetworkReply*)));
     emit replyRecieved(netReply);
+    disconnect(this,SIGNAL(replyRecieved(QNetworkReply*)),
+               tracker,SLOT(replyFinished(QNetworkReply*)));
 }
 
 void NetManager::sslErrors(QNetworkReply *netReply, QList<QSslError> errors)

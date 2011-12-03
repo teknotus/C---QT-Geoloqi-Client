@@ -7,6 +7,7 @@
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <qjson/parser.h>
 #include "netmanager.h"
 
 // debugging stuff remove later
@@ -27,9 +28,10 @@ public:
     bool emitJson;
     void setManager(NetManager*);
     void setToken(QString);
+    QJson::Parser *parser;
 signals:
     void stringRecieved(QString);
-    void jsonRecieved(QVariant*);
+    void jsonRecieved(QVariant);
 public slots:
     void getUrl(QUrl);
     void replyFinished(QNetworkReply*);
