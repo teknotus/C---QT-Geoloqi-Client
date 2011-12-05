@@ -13,6 +13,11 @@
 #include <QListIterator>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QPen>
+#include <QBrush>
+#include <QRectF>
 
 // debugging stuff remove later
 #include <iostream>
@@ -31,6 +36,11 @@ public:
     int rawTabId;
     QTableWidget *resultsTable;
     int tableTabId;
+    QGraphicsScene *scene;
+    QGraphicsView *mapView;
+    int mapTabId;
+    //QBrush *mapBrush;
+
 
 signals:
 

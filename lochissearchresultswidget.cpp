@@ -8,6 +8,9 @@ LocHisSearchResultsWidget::LocHisSearchResultsWidget(QWidget *parent) :
     clearButton = new QPushButton(tr("Clear Results"));
     resultViews = new QTabWidget();
     resultsTable = new QTableWidget(0,8);
+    scene = new QGraphicsScene();
+    mapView = new QGraphicsView(scene);
+    mapTabId = resultViews->addTab(mapView,tr("map"));
     tableTabId = resultViews->addTab(resultsTable,tr("table"));
     rawTabId = resultViews->addTab(rawOutPut,tr("raw output"));
     layout = new QGridLayout;
@@ -39,7 +42,25 @@ void LocHisSearchResultsWidget::jsonReply(QVariant parsedResult)
         rootmapi.next();
         out << rootmapi.key() << endl;
     }
+    QVariantMap bounds = rootmap.value("bounds").toMap();
+    QVariantMap sw = bounds.value("sw").toMap();
+    double sw_lat = sw.value("latitude").toDouble();
+    double sw_lon = sw.value("longitude").toDouble();
+    QVariantMap ne = bounds.value("ne").toMap();
+    double ne_lat = ne.value("latitude").toDouble();
+    double ne_lon = ne.value("longitude").toDouble();
+    double viewWidth = ne_lon - sw_lon;
+    double viewHight = ne_lat - sw_lat;
+    QRectF viewrect(sw_lon,ne_lat,viewWidth,viewHight);
+    out << "topleft x:" << sw_lon << " y:" << ne_lat;
+    out << " width:" << viewWidth << " hight:" << viewHight << endl;
+    //mapView->setSceneRect(viewrect);
+    //mapView;
+    //mapView->fitInView(viewrect);
     int row = 0;
+    double prevLat = 0,prevLong = 0;
+    QBrush mapBrush(Qt::green, Qt::SolidPattern);
+    QPen mapPen(mapBrush,3);
     QVariantList pointslist = rootmap["points"].toList();
     QListIterator<QVariant> pointslisti(pointslist);
     while(pointslisti.hasNext())
@@ -60,9 +81,18 @@ void LocHisSearchResultsWidget::jsonReply(QVariant parsedResult)
         QTableWidgetItem *horizontal_accuracy = new QTableWidgetItem(positionMap.value("horizontal_accuracy").toString());
         resultsTable->setItem(row,3,horizontal_accuracy);
         QTableWidgetItem *latitude = new QTableWidgetItem(positionMap.value("latitude").toString());
+        double lat = positionMap.value("latitude").toDouble() * 2000;
         resultsTable->setItem(row,4,latitude);
+        prevLat = lat;
         QTableWidgetItem *longitude = new QTableWidgetItem(positionMap.value("longitude").toString());
+        double lon = positionMap.value("longitude").toDouble() * 2000;
         resultsTable->setItem(row,5,longitude);
+        prevLong = lon;
+        if(row)
+        {
+            out << "drawing line x1:" << prevLong << " y1:" << prevLat << " x2:" << lon << " y2:" << lat << endl;
+            scene->addLine(prevLong,prevLat,lon,lat,mapPen);
+        }
         QTableWidgetItem *speed = new QTableWidgetItem(positionMap.value("speed").toString());
         resultsTable->setItem(row,6,speed);
         QTableWidgetItem *vertical_accuracy = new QTableWidgetItem(positionMap.value("vertical_accuracy").toString());
