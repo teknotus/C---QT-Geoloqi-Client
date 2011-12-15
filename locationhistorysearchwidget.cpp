@@ -23,9 +23,9 @@ LocationHistorySearchWidget::LocationHistorySearchWidget(QWidget *parent) :
     timeRangeEdit = new QHBoxLayout();
     timeRangeEdit->addWidget(afterLabel);
     timeRangeEdit->addWidget(after);
-    timeRangeEdit->addStretch();
     timeRangeEdit->addWidget(beforeLabel);
     timeRangeEdit->addWidget(before);
+    timeRangeEdit->addStretch();
     filterLayout = new QHBoxLayout();
     filterLayout->addWidget(countLabel);
     filterLayout->addWidget(count);
