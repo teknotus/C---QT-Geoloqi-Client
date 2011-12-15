@@ -44,14 +44,14 @@ LoqiWindow::~LoqiWindow()
 
 void LoqiWindow::readSettings()
 {
-    if(!settings->contains("authkey")){
-        authdialog->show();
-    }
-    else
-    {
-        permanent_token = settings->value("authkey").toString();
-        authdialog->authEdit->setText(permanent_token);
-    }
+//    if(!settings->contains("authkey")){
+//        authdialog->show();
+//    }
+//    else
+//    {
+//        permanent_token = settings->value("authkey").toString();
+//        authdialog->authEdit->setText(permanent_token);
+//    }
 }
 
 void LoqiWindow::writeSettings()
