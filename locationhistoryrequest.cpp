@@ -4,6 +4,19 @@ LocationHistoryRequest::LocationHistoryRequest(QObject *parent) :
     QObject(parent)
 {
     _base_url = QString("https://api.geoloqi.com/1/location/history");
+    _count = 0; // (default 10)
+    //_after(); // timestamp toString(Qt::ISODate)
+    //QDateTime _before; // timestamp toString(Qt::ISODate)
+    //_sort; // asc || desc
+    _accuracy = 0; // (default: 150)
+    _thinning = 0; // (default: 0)
+    //enum geometry_type _geometry; // circle || rectangle
+    //Coordinates *_center; // Required for geometry=circle
+    //long _radius; // Required for geometry=circle
+    //Coordinates *_sw; // Required for geometry=rectangle
+    //Coordinates *_ne; // Required for geometry=rectangle
+    //QString _base_url;
+
 }
 
 bool LocationHistoryRequest::isValid()
@@ -51,11 +64,11 @@ QUrl LocationHistoryRequest::url()
         accuracy.setNum(_count);
         url.addQueryItem(QString("accuracy"),accuracy);
     }
-    if(_accuracy)
+    if(_thinning)
     {
-        QString accuracy;
-        accuracy.setNum(_accuracy);
-        url.addQueryItem(QString("accuracy"),accuracy);
+        QString thinning;
+        thinning.setNum(_thinning);
+        url.addQueryItem(QString("thinning"),thinning);
     }
     switch(_geometry)
     {
