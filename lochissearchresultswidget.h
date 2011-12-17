@@ -13,6 +13,7 @@
 #include <QListIterator>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QStringList>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QPen>
@@ -35,6 +36,7 @@ public:
     QTabWidget *resultViews;
     int rawTabId;
     QTableWidget *resultsTable;
+    QStringList tableHeaders;
     int tableTabId;
     QGraphicsScene *scene;
     QGraphicsView *mapView;

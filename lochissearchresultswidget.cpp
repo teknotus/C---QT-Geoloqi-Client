@@ -8,7 +8,16 @@ LocHisSearchResultsWidget::LocHisSearchResultsWidget(QWidget *parent) :
     clearButton = new QPushButton(tr("Clear Results"));
     resultViews = new QTabWidget();
     resultsTable = new QTableWidget(0,8);
-//    resultsTable
+    tableHeaders << "date_ts"
+                 << "altitude"
+                 << "heading"
+                 << "horizontal_accuracy"
+                 << "latitude"
+                 << "longitude"
+                 << "speed"
+                 << "vertical_accuracy";
+
+    resultsTable->setHorizontalHeaderLabels(tableHeaders);
     scene = new QGraphicsScene();
     mapView = new QGraphicsView(scene);
     mapTabId = resultViews->addTab(mapView,tr("map"));
