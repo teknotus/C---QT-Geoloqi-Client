@@ -8,6 +8,7 @@ LocHisSearchResultsWidget::LocHisSearchResultsWidget(QWidget *parent) :
     clearButton = new QPushButton(tr("Clear Results"));
     resultViews = new QTabWidget();
     resultsTable = new QTableWidget(0,8);
+//    resultsTable
     scene = new QGraphicsScene();
     mapView = new QGraphicsView(scene);
     mapTabId = resultViews->addTab(mapView,tr("map"));
@@ -24,6 +25,8 @@ LocHisSearchResultsWidget::LocHisSearchResultsWidget(QWidget *parent) :
             resultsTable,SLOT(clear()));
     connect(clearButton,SIGNAL(clicked()),
             this,SLOT(clearTable()));
+    connect(clearButton,SIGNAL(clicked()),
+            scene,SLOT(clear()));
 }
 
 void LocHisSearchResultsWidget::stringReply(QString stringResult)
@@ -57,6 +60,7 @@ void LocHisSearchResultsWidget::jsonReply(QVariant parsedResult)
     //mapView->setSceneRect(viewrect);
     //mapView;
     //mapView->fitInView(viewrect);
+//    resultsTable->set
     int row = 0;
     double prevLat = 0,prevLong = 0;
     QBrush mapBrush(Qt::green, Qt::SolidPattern);
