@@ -7,6 +7,7 @@ LoqiWindow::LoqiWindow(QWidget *parent)
     authdialog = new AuthDialog();
     connect(authdialog->saveSettingsButton,SIGNAL(clicked()),this,SLOT(authSave()));
     readSettings();
+    permanent_token = settings->value("authkey").toString();
     editMenu = menuBar()->addMenu("Edit");
     editAuthKey = new QAction(tr("Edit Auth Key"),this);
     connect(editAuthKey,SIGNAL(triggered()),this,SLOT(showAuthDialog()));
